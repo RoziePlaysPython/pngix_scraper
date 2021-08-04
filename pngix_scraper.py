@@ -54,7 +54,6 @@ def FindingLinks():
     #loop until images end
     page=2
     errs=0
-    #prev_imgs = links
     dump=open('dump.csv', 'a')
     csv.writer(dump).writerows(links)
     while len(links)>0:
@@ -63,21 +62,11 @@ def FindingLinks():
         try:
             response = get(target_link+f'top/{page}/', allow_redirects=True)
             print(response.status_code, response.url)        
-            test=open('testdump.html', 'w')
-            test.write(ping.text)
-            test.close
             links=LinkPairs(response.text)
             imgs_count+=len(links)
             print(f'page:{page}, images found:{len(links)}, total:{imgs_count}')
             page+=1
-    #        if prev_imgs==img_parser.PageLinksList: #if pages repeat
-    #            print("Images are repeating, quitting")
-    #            endlist = prev_imgs+img_parser.PageLinksList
-    #            print([item for item, count in collections.Counter(endlist).items() if count > 1])
-    #            print(target_link+f'top/{page-1}/')
-    #            break
             csv.writer(dump).writerows(links)
-    #        prev_imgs = img_parser.PageLinksList
         except Exception as exc:
             dump.close()
             errs+=1
@@ -98,7 +87,6 @@ def AddingData():
     file_lenth = sum(1 for line in load)
     load.close()
     load=open('dump.csv', 'r')
-    #reader=csv.reader(load)
     print(f'Getting additional data about {file_lenth} images')
     print()
     for row in range(file_lenth):
