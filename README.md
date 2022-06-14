@@ -1,7 +1,8 @@
 # Attention
-This script is incomplete due to lack of my knowledge
+This script no longer works because pngix.com is down
+~~This script is incomplete due to lack of my knowledge
 Some common error cases are not accounted.
-It can break sometimes
+It can break sometimes~~
 ## Requirements
 Apart from standart python3 libraries, you will need BeautifulSoup 4 for better html parsing
 ```
